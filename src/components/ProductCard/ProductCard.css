@@ -1,0 +1,48 @@
+.product-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.product-card .buttons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.product-card .buttons .like {
+  color: gray;  
+}
+
+.product-card .buttons .like.liked {
+  color: red;
+}
+
+.product-card .buttons .like:hover {
+  color: #ff6666;
+}
+
+.product-card .buttons .remove {
+  color: gray;
+}
+
+.product-card .buttons .remove:hover {
+  color: black;
+}

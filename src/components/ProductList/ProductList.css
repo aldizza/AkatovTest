@@ -1,0 +1,11 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .product-list .product-card {
+    flex: 1 1 calc(33% - 1rem);
+    min-width: 250px;
+  }
+  
