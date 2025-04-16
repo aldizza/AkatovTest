@@ -35,7 +35,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
     image: item.url,
     liked: false,
     title: `Котик #${index + 1}`,
-    description: `Милый котик id ${item.id}.`,
+    description: `Милый котик id ${item.id} принесет радость и удачу в ваш дом. Кошки, которых любят, приносят счастье.`,
   }))
 })
 
@@ -48,7 +48,7 @@ export const refreshProducts = createAsyncThunk('products/refreshProducts', asyn
     image: item.url,
     liked: false,
     title: `Котик #${index + 1}`,
-    description: `Милый котик id ${item.id}.`,
+    description: `Милый котик id ${item.id} принесет радость и удачу в ваш дом. Кошки, которых любят, приносят счастье.`,
   }))
 })
 

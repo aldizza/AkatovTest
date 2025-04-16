@@ -2,6 +2,8 @@ import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
+import './ProductDetailPage.css'
+import Button from '../ Button/Button'
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams()
@@ -23,11 +25,11 @@ const ProductDetail: React.FC = () => {
   if (!actualProduct) return <div>Котик не найден</div>
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="detail-container">
       <img src={actualProduct.image} alt={actualProduct.title} style={{ width: '300px' }} />
       <h2>{actualProduct.title}</h2>
       <p>{actualProduct.description}</p>
-      <button onClick={() => navigate('/products')}>К списку карточек</button>
+      <Button onClick={() => navigate('/products')}>К списку карточек</Button>
     </div>
   )
 }

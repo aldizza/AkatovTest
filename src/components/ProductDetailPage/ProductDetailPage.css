@@ -1,0 +1,35 @@
+.detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .detail-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .detail-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  .detail-container p {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* .p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } */
+  

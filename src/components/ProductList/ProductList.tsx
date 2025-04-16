@@ -12,6 +12,9 @@ import {
 import { RootState } from '../../app/store'
 
 import './ProductList.css'
+import Button from '../ Button/Button'
+import { useNavigate } from 'react-router-dom'
+
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch()
@@ -44,17 +47,21 @@ const ProductList: React.FC = () => {
     dispatch(refreshProducts())
   }
 
+
   const filteredProducts = showFavorites
     ? products.filter((product) => product.liked)
     : products
 
+  const navigate = useNavigate()
+
   return (
     <div>
       <div style={{ display: 'flex', gap: '10px', padding: '0 20px' }}>
-        <button onClick={handleFilterToggle}>
-          {showFavorites ? 'Показать все' : 'Показать избранные'}
-        </button>
-        <button onClick={handleRefresh}>Обновить все карточки</button>
+        <Button onClick={handleFilterToggle}>
+          {showFavorites ? 'Показать все карточки' : 'Показать избранные'}
+        </Button>
+        <Button onClick={handleRefresh}>Обновить все карточки</Button>
+        <Button onClick={() => navigate('/create-product')}>Создание карточки</Button>
       </div>
 
       {loading && <p>Загрузка...</p>}
