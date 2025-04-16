@@ -1,12 +1,17 @@
 import React from 'react'
-import AppRouter from './routes/AppRouter'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import ProductList from './components/ProductList/ProductList'
+import CreateProductPage from './components/CreateProductPage/CreateProductPage'
+import ProductDetailPage from './components/ProductDetailPage/ProductDetailPage'
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Картинки котиков</h1>
-      <AppRouter />
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/products" />} />
+      <Route path="/products" element={<ProductList />} />
+      <Route path="/create-product" element={<CreateProductPage />} />
+      <Route path="/products/:id" element={<ProductDetailPage />} />
+    </Routes>
   )
 }
 

@@ -5,6 +5,12 @@
   border-radius: 8px;
   width: 250px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+  text-align: center;
+  background-color: white;
 }
 
 .product-card img {
@@ -12,6 +18,25 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-card p {
+  font-size: 1rem;
+  margin: 0;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .product-card .buttons {
@@ -24,11 +49,12 @@
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  transition: color 0.3s;
 }
 
 .product-card .buttons .like {
-  color: gray;  
+  color: gray;
 }
 
 .product-card .buttons .like.liked {
@@ -45,4 +71,19 @@
 
 .product-card .buttons .remove:hover {
   color: black;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.product-card .card-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-card .card-info h3 {
+  margin-bottom: 1rem;
 }

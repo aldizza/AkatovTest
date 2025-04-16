@@ -1,11 +1,86 @@
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .product-list .product-card {
-    flex: 1 1 calc(33% - 1rem);
-    min-width: 250px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin: 12px;
+  margin-bottom: 6px;
+}
+
+.product-card p {
+  font-size: 14px;
+  margin: 0 12px 12px;
+  color: #555;
+  line-height: 1.3;
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.like-icon {
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.like-icon:hover {
+  color: #ff000052;
+}
+
+.like-icon.liked {
+  color: red;
+}
+
+.like-icon.liked:hover {
+  color: red;
+}
+
+.trash-icon {
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.trash-icon:hover {
+  color: black;
+}
