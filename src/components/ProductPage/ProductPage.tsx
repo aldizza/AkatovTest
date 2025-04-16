@@ -16,7 +16,7 @@ const ProductPage: React.FC = () => {
       <h1>Детали продукта</h1>
       <img src={product.image} alt="Product" />
       <div>Liked: {product.liked ? 'Yes' : 'No'}</div>
-      <Link to="/">К списку котиков</Link>
+      <Link to="/">К списку карточек</Link>
     </div>
   )
 }

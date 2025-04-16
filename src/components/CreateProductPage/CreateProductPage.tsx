@@ -29,7 +29,7 @@ const CreateProduct: React.FC = () => {
         liked: false,
       })
     )
-    navigate('/products')
+    navigate('/products/:id')
   }
 
   return (

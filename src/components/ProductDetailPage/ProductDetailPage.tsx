@@ -6,18 +6,28 @@ import { RootState } from '../../app/store'
 const ProductDetail: React.FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+
   const product = useSelector((state: RootState) =>
     state.products.products.find(p => p.id === id)
   )
 
-  if (!product) return <div>Котик не найден</div>
+  const fallbackFromLocalStorage = () => {
+    const stored = localStorage.getItem('allProducts')
+    if (!stored) return null
+    const parsed = JSON.parse(stored)
+    return parsed.find((p: any) => p.id === id)
+  }
+
+  const actualProduct = product || fallbackFromLocalStorage()
+
+  if (!actualProduct) return <div>Котик не найден</div>
 
   return (
     <div style={{ padding: '1rem' }}>
-      <img src={product.image} alt={product.title} style={{ width: '300px' }} />
-      <h2>{product.title}</h2>
-      <p>{product.description}</p>
-      <button onClick={() => navigate('/')}>К списку котиков</button>
+      <img src={actualProduct.image} alt={actualProduct.title} style={{ width: '300px' }} />
+      <h2>{actualProduct.title}</h2>
+      <p>{actualProduct.description}</p>
+      <button onClick={() => navigate('/products')}>К списку карточек</button>
     </div>
   )
 }
