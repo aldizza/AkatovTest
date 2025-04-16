@@ -1,34 +1,34 @@
 .create-form-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 40px auto;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
   
 .create-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
   
 .create-form label {
-    font-size: 16px;
-    margin-bottom: 6px;
+  font-size: 16px;
+   margin-bottom: 6px;
 }
   
 .create-form input {
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
   
 .error-text {
-    color: red;
-    font-size: 13px;
-    margin-top: -10px;
-    margin-bottom: 10px;
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
   

@@ -1,15 +1,17 @@
 .custom-button {
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 8px;
-    background-color: grey;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: grey;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
   
-  .custom-button:hover {
-    background-color: black;
-  }
+.custom-button:hover {
+  background-color: black;
+}
   

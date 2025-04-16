@@ -29,12 +29,17 @@
 }
 
 .product-card h3 {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 800;
   font-size: 18px;
   margin: 12px;
   margin-bottom: 6px;
 }
 
 .product-card p {
+  font-family: 'Playfair Display', sans-serif;
+  font-style: italic;
+  font-weight: 400;
   font-size: 14px;
   margin: 0 12px 12px;
   color: #555;

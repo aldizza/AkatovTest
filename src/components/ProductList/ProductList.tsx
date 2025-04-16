@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FaHeart, FaTrashAlt } from 'react-icons/fa'
+import '../../main.css'
 
 import {
   toggleLike,
@@ -12,6 +13,7 @@ import {
 import { RootState } from '../../app/store'
 
 import './ProductList.css'
+
 import Button from '../ Button/Button'
 import { useNavigate } from 'react-router-dom'
 
