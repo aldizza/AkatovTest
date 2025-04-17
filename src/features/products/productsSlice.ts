@@ -29,7 +29,7 @@ const loadProductsFromLocalStorage = (): IProduct[] => {
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
   const data = await response.json()
-  return data.map((item: any, index: number) => ({
+  return data.map((item: any) => ({
     id: item.id,
     image: item.url,
     liked: false,
@@ -41,7 +41,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
 export const refreshProducts = createAsyncThunk('products/refreshProducts', async () => {
   const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
   const data = await response.json()
-  return data.map((item: any, index: number) => ({
+  return data.map((item: any) => ({
     id: item.id,
     image: item.url,
     liked: false,
