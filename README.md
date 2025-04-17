@@ -1,54 +1,76 @@
-# React + TypeScript + Vite
+# 🐾 Cats SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простое и аккуратное одностраничное приложение (SPA) со списком карточек продуктов, построенное с использованием React и TypeScript. В качестве источника данных используется [The Cat API](https://api.thecatapi.com/v1/images/search?limit=10), который возвращает изображения кошек.
 
-Currently, two official plugins are available:
+проект на GitHub Pages https://aldizza.github.io/AkatovTest
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Описание проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Цель проекта — создать SPA, в котором отображается список карточек. Каждая карточка содержит изображение, полученное с API или добавленную пользователем.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Проект демонстрирует умение работать с глобальным состоянием, маршрутизацией, формами, базовой валидацией и пользовательским интерфейсом.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Технологии и стек
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- **React** + **TypeScript**
+- **Redux Toolkit** или **Zustand** (на выбор)
+- **React Router DOM** — маршрутизация
+- **React Icons** (`react-icons/fa`) — иконки лайка и удаления
+- **MUI** (`@mui/material/Pagination`) — пагинация
+- **React** (кнопки и формы)
+
+---
+
+## 📌 Задачи
+
+### 📦 Задача 1: Список продуктов `/products`
+
+- Отображение списка всех продуктов (карточек)
+- У каждой карточки:
+  - Иконка ❤️ лайка — добавляет/удаляет из избранного
+  - Иконка 🗑️ удаления — удаляет карточку
+  - При клике на карточку (кроме иконок) — переход на страницу детали продукта
+- Фильтр: Все карточки / Только избранные
+- Урезанный текст, чтобы карточки были одной высоты
+
+### 📝 Задача 2: Страница продукта `/products/:id`
+
+- Отображение подробной информации о продукте
+- Кнопка для возврата на главную страницу
+
+### ➕ Задача 3: Создание продукта `/create-product`
+
+- Форма с обязательными полями и минимальной валидацией
+- После отправки — сохранение данных в store
+
+### Бонусные задачи:
+
+- Пагинация
+- Редактирование карточки
+
+---
+
+## 📂 Хранение данных
+
+Все данные (полученные и созданные) сохраняются во **внутреннем store** (Redux Toolkit).
+
+---
+
+## 📸 Используемое API
+
+- [The Cat API](https://api.thecatapi.com/v1/images/search?limit=10) — для получения изображений кошек
+
+---
+
+## 📦 Установка и запуск
+
+```bash
+git clone https://github.com/aldizza/AkatovTest.git
+cd cats-spa
+npm install
+npm start
 ```
