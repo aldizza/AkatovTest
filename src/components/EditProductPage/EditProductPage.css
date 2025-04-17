@@ -1,0 +1,50 @@
+.edit-form-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  gap: 20px;
+}
+  
+.edit-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: grey;
+}
+  
+.edit-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: grey;
+}
+  
+.edit-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid white;
+  border-radius: 8px;
+  font-size: 16px;
+}
+  
+.edit-form .error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+  
+.edit-form button {
+  margin-top: 10px;
+}
+  
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+  }
+  

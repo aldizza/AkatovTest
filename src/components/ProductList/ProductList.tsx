@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { FaHeart, FaTrashAlt } from 'react-icons/fa'
+import { FaHeart, FaTrashAlt, FaEdit } from 'react-icons/fa'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
@@ -14,7 +14,6 @@ import {
 import { RootState } from '../../app/store'
 import Button from '../ Button/Button'
 import './ProductList.css'
-import '../../main.css'
 
 const ITEMS_PER_PAGE = 4
 
@@ -80,7 +79,7 @@ const ProductList: React.FC = () => {
               to={`/products/${product.id}`}
               className="card-link"
               onClick={e => {
-                // Prevent navigation when clicking on action icons
+                
                 if ((e.target as HTMLElement).closest('.actions')) {
                   e.preventDefault()
                 }
@@ -89,22 +88,25 @@ const ProductList: React.FC = () => {
               <img src={product.image} alt={product.title} />
               <h3>{product.title}</h3>
               <p className="clamp-text">{product.description}</p>
+
             </Link>
             <div className="actions">
               <FaHeart
                 onClick={() => handleLike(product.id)}
-                style={{
-                  color: product.liked ? 'red' : 'gray',
-                  cursor: 'pointer',
-                }}
+                className={`icon-button icon-like ${product.liked ? 'liked' : ''}`}
+                title="Добавить в избранное"
               />
               <FaTrashAlt
                 onClick={() => handleDelete(product.id)}
-                style={{
-                  marginLeft: '10px',
-                  cursor: 'pointer',
-                }}
+                className="icon-button icon-delete"
+                title="Удалить карточку"
               />
+              <Link to={`/edit-product/${product.id}`}>
+              <FaEdit
+                className="icon-button icon-edit"
+                title="Редактировать"
+              />
+            </Link>
             </div>
           </div>
         ))}

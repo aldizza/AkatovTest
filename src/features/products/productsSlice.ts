@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
-interface Product {
+interface IProduct {
   id: string
   image: string
   liked: boolean
@@ -8,8 +8,8 @@ interface Product {
   description: string
 }
 
-interface ProductsState {
-  products: Product[]
+interface IProductsState {
+  products: IProduct[]
   loading: boolean
   error: string | null
   initialized: boolean
@@ -17,16 +17,15 @@ interface ProductsState {
 
 const PRODUCTS_KEY = 'allProducts'
 
-const saveProductsToLocalStorage = (products: Product[]) => {
+const saveProductsToLocalStorage = (products: IProduct[]) => {
   localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products))
 }
 
-const loadProductsFromLocalStorage = (): Product[] => {
+const loadProductsFromLocalStorage = (): IProduct[] => {
   const data = localStorage.getItem(PRODUCTS_KEY)
   return data ? JSON.parse(data) : []
 }
 
-// Первичная загрузка
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
   const data = await response.json()
@@ -39,7 +38,6 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
   }))
 })
 
-// Принудительное обновление карточек
 export const refreshProducts = createAsyncThunk('products/refreshProducts', async () => {
   const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
   const data = await response.json()
@@ -52,7 +50,7 @@ export const refreshProducts = createAsyncThunk('products/refreshProducts', asyn
   }))
 })
 
-const initialState: ProductsState = {
+const initialState: IProductsState = {
   products: loadProductsFromLocalStorage(),
   loading: false,
   error: null,
@@ -74,10 +72,18 @@ const productsSlice = createSlice({
       state.products = state.products.filter(p => p.id !== action.payload)
       saveProductsToLocalStorage(state.products)
     },
-    addProduct: (state, action: PayloadAction<Product>) => {
+    addProduct: (state, action: PayloadAction<IProduct>) => {
       state.products.unshift(action.payload)
       saveProductsToLocalStorage(state.products)
     },
+    updateProduct: (state, action: PayloadAction<IProduct>) => {
+      const index = state.products.findIndex(p => p.id === action.payload.id)
+      if (index !== -1) {
+        state.products[index] = action.payload
+        saveProductsToLocalStorage(state.products)
+      }
+    }
+
   },
   extraReducers: builder => {
     builder
@@ -99,11 +105,11 @@ const productsSlice = createSlice({
       })
       .addCase(refreshProducts.rejected, (state, action) => {
         state.loading = false
-        state.error = action.error.message || 'Failed to refresh products'
+        state.error = action.error.message || 'Ошибка при обновлении карточек'
       })
   },
 })
 
-export const { toggleLike, deleteProduct, addProduct } = productsSlice.actions
+export const { toggleLike, deleteProduct, addProduct, updateProduct } = productsSlice.actions
 export default productsSlice.reducer
 

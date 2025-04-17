@@ -39,7 +39,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="detail-container">
-      <img src={actualProduct.image} alt={actualProduct.title} style={{ width: '300px' }} />
+      <img src={actualProduct.image} alt={actualProduct.title} />
       <h2>{actualProduct.title}</h2>
       <p>{actualProduct.description}</p>
       <Button onClick={() => navigate('/products')}>К списку карточек</Button>

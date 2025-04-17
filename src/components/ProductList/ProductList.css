@@ -25,7 +25,7 @@
 .product-card {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   position: relative;
   transition: transform 0.2s ease;
@@ -43,7 +43,7 @@
   font-size: 14px;
   margin: 0 12px 12px;
   color: grey;
-  -webkit-line-clamp: 2; /* Количество строк */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -81,6 +81,53 @@
   overflow: hidden;
 }
 
+.icon-button {
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin-left: 10px;
+}
+
+.icon-like {
+  color: gray;
+}
+
+.icon-like.liked {
+  color: red;
+}
+
+.icon-like:hover {
+  color: rgb(237, 133, 147);
+}
+
+.icon-like:active {
+  color: red;
+}
+
+.icon-like.liked:active {
+  color: red;
+}
+
+.icon-like.liked:hover {
+  color: red;
+}
+
+
+.icon-edit {
+  color: grey;
+}
+
+.icon-edit:hover {
+  color: black;
+}
+
+.icon-delete {
+  color: gray;
+}
+
+.icon-delete:hover {
+  color: black;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -90,6 +137,8 @@
 
 .pagination-container {
   margin-top: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 12px
 }
 
 .MuiPagination-root {
@@ -115,3 +164,7 @@
   color: white !important;
 }
 
+.actions svg:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
