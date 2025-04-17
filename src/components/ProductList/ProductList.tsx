@@ -1,64 +1,68 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaHeart, FaTrashAlt } from 'react-icons/fa'
-import '../../main.css'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 import {
-  toggleLike,
-  deleteProduct,
   fetchProducts,
   refreshProducts,
+  toggleLike,
+  deleteProduct,
 } from '../../features/products/productsSlice'
 import { RootState } from '../../app/store'
-
-import './ProductList.css'
-
 import Button from '../ Button/Button'
-import { useNavigate } from 'react-router-dom'
+import './ProductList.css'
+import '../../main.css'
 
+const ITEMS_PER_PAGE = 4
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { products, loading, error } = useSelector((state: RootState) => state.products)
+
   const [showFavorites, setShowFavorites] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    if (!products.length) {
-      dispatch(fetchProducts())
-    }
-  }, [dispatch, products.length])
+    dispatch(fetchProducts() as any)
+  }, [dispatch])
 
-  const handleLike = (e: React.MouseEvent, id: string) => {
-    e.stopPropagation()
-    e.preventDefault()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentPage])
+
+  const handleLike = (id: string) => {
     dispatch(toggleLike(id))
   }
 
-  const handleDelete = (e: React.MouseEvent, id: string) => {
-    e.stopPropagation()
-    e.preventDefault()
+  const handleDelete = (id: string) => {
     dispatch(deleteProduct(id))
   }
 
-  const handleFilterToggle = () => {
-    setShowFavorites(!showFavorites)
-  }
-
   const handleRefresh = () => {
-    dispatch(refreshProducts())
+    dispatch(refreshProducts() as any)
+    setCurrentPage(1)
   }
 
+  const handleFilterToggle = () => {
+    setShowFavorites(prev => !prev)
+    setCurrentPage(1)
+  }
 
   const filteredProducts = showFavorites
-    ? products.filter((product) => product.liked)
+    ? products.filter(p => p.liked)
     : products
 
-  const navigate = useNavigate()
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE)
+  const startIdx = (currentPage - 1) * ITEMS_PER_PAGE
+  const paginatedProducts = filteredProducts.slice(startIdx, startIdx + ITEMS_PER_PAGE)
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: '10px', padding: '0 20px' }}>
+    <div className="product-page">
+      <div className="controls">
         <Button onClick={handleFilterToggle}>
           {showFavorites ? 'Показать все карточки' : 'Показать избранные'}
         </Button>
@@ -70,26 +74,57 @@ const ProductList: React.FC = () => {
       {error && <p>Ошибка: {error}</p>}
 
       <div className="product-list">
-        {filteredProducts.map((product) => (
+        {paginatedProducts.map(product => (
           <div key={product.id} className="product-card">
-            <Link to={`/products/${product.id}`} className="card-link">
-              <img src={product.image} alt="cat" />
+            <Link
+              to={`/products/${product.id}`}
+              className="card-link"
+              onClick={e => {
+                // Prevent navigation when clicking on action icons
+                if ((e.target as HTMLElement).closest('.actions')) {
+                  e.preventDefault()
+                }
+              }}
+            >
+              <img src={product.image} alt={product.title} />
               <h3>{product.title}</h3>
-              <p>{product.description}</p>
-              <div className="actions">
-                <FaHeart
-                  onClick={(e) => handleLike(e, product.id)}
-                  className={`like-icon ${product.liked ? 'liked' : ''}`}
-                />
-                <FaTrashAlt
-                  onClick={(e) => handleDelete(e, product.id)}
-                  className="trash-icon"
-                />
-              </div>
+              <p className="clamp-text">{product.description}</p>
             </Link>
+            <div className="actions">
+              <FaHeart
+                onClick={() => handleLike(product.id)}
+                style={{
+                  color: product.liked ? 'red' : 'gray',
+                  cursor: 'pointer',
+                }}
+              />
+              <FaTrashAlt
+                onClick={() => handleDelete(product.id)}
+                style={{
+                  marginLeft: '10px',
+                  cursor: 'pointer',
+                }}
+              />
+            </div>
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination-container">
+          <Stack spacing={2} alignItems="center">
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(_, value) => setCurrentPage(value)}
+              showFirstButton
+              showLastButton
+              siblingCount={1}
+              boundaryCount={1}
+            />
+          </Stack>
+        </div>
+      )}
     </div>
   )
 }
