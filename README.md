@@ -68,6 +68,6 @@
 
 ```bash
 git clone https://github.com/aldizza/AkatovTest.git
-cd cats-spa
+cd AkatovTest
 npm install
 npm start
