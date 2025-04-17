@@ -7,6 +7,20 @@
   margin: 0 auto;
 }
 
+.loading-text {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  color: black;
+  font-size: 18px;
+}
+
+.error-text {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  color: red;
+  font-size: 18px;
+}
+
 .controls {
   display: flex;
   gap: 10px;
@@ -23,7 +37,7 @@
 }
 
 .product-card {
-  background-color: #fff;
+  background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
   overflow: hidden;

@@ -69,8 +69,8 @@ const ProductList: React.FC = () => {
         <Button onClick={() => navigate('/create-product')}>Создание карточки</Button>
       </div>
 
-      {loading && <p>Загрузка...</p>}
-      {error && <p>Ошибка: {error}</p>}
+      {loading && <p className="loading-text">Загрузка...</p>}
+      {error && <p className="error-text">Ошибка: {error}</p>}
 
       <div className="product-list">
         {paginatedProducts.map(product => (
